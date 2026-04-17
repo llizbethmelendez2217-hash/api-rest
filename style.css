@@ -1,11 +1,9 @@
-/* Fondo suave rosita */
 body {
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #ffe6f0, #ffd6e7);
+    background: #ffe6f0;
     margin: 0;
 }
 
-/* Contenedor */
 .container {
     background: #ffffff;
     padding: 30px;
@@ -13,13 +11,6 @@ body {
     max-width: 900px;
     margin: 40px auto;
     border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(255, 182, 193, 0.4);
-}
-
-/* Título */
-h2 {
-    text-align: center;
-    color: #d63384;
 }
 
 /* MOSAICO */
@@ -29,70 +20,38 @@ h2 {
     gap: 15px;
 }
 
-/* Tarjetas */
 .card {
     background: #fff0f5;
     padding: 15px;
     border-radius: 15px;
-    border: 1px solid #ffc0cb;
 }
 
 /* Inputs */
 input, select {
     width: 100%;
     padding: 10px;
-    margin-top: 5px;
     border-radius: 10px;
     border: 1px solid #ffc0cb;
-    background: #fff;
-}
-
-/* Focus */
-input:focus, select:focus {
-    border-color: #ff66b2;
-    box-shadow: 0 0 5px rgba(255, 102, 178, 0.3);
-    outline: none;
 }
 
 /* Botones */
 button {
-    padding: 10px 15px;
-    margin: 8px 5px;
+    padding: 10px;
     border: none;
     border-radius: 10px;
-    cursor: pointer;
-    transition: 0.3s;
-    font-weight: bold;
-}
-
-/* Guardar (rosa claro) */
-#btnGuardar {
-    background: #ff99cc;
-    color: white;
-}
-
-/* Actualizar (rosa más fuerte) */
-#btnActualizar {
     background: #ff66b2;
     color: white;
+    cursor: pointer;
 }
 
-/* Hover */
 button:hover {
-    transform: scale(1.05);
-    opacity: 0.9;
+    background: #ff3385;
 }
 
 /* Tabla */
-.table-container {
-    margin-top: 20px;
-    background: #fff0f5;
-    padding: 15px;
-    border-radius: 15px;
-}
-
 table {
     width: 100%;
+    margin-top: 15px;
     border-collapse: collapse;
 }
 
@@ -105,35 +64,4 @@ th {
 td {
     padding: 10px;
     text-align: center;
-}
-
-/* Filas */
-tr:nth-child(even) {
-    background: #ffe6f0;
-}
-
-tr:hover {
-    background: #ffd6e7;
-}
-
-/* Botones acciones */
-button.small:nth-child(1) {
-    background: #ffb3d9;
-    color: #660033;
-}
-
-button.small:nth-child(2) {
-    background: #ff4d6d;
-    color: white;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .form-grid {
-        grid-template-columns: 1fr;
-    }
-
-    button {
-        width: 100%;
-    }
 }
