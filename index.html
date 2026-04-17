@@ -13,32 +13,48 @@
 
     <input type="hidden" id="id">
 
-    <input type="text" id="nombre" placeholder="Nombre">
+   <div class="form-grid">
 
-    <select id="tipo">
-        <option value="">Selecciona Tipo</option>
-        <option value="Laptop">Laptop</option>
-        <option value="PC">PC</option>
-        <option value="Impresora">Impresora</option>
-        <option value="Monitor">Monitor</option>  
-        <option value="Celular">Celular</option>  
-    </select>
+    <div class="card">
+        <label>Nombre</label>
+        <input type="text" id="nombre" placeholder="Ej: Laptop HP">
+    </div>
 
-    <select id="estado">
-        <option value="">Selecciona Estado</option>
-        <option value="Activo">Activo</option>
-        <option value="En reparación">En reparación</option>
-        <option value="Baja">Baja</option>
-    </select>
+    <div class="card">
+        <label>Tipo</label>
+        <select id="tipo">
+            <option value="">Selecciona Tipo</option>
+            <option value="Laptop">Laptop</option>
+            <option value="PC">PC</option>
+            <option value="Impresora">Impresora</option>
+            <option value="Monitor">Monitor</option>
+            <option value="Celular">Celular</option>
+        </select>
+    </div>
 
-    <select id="area">
-        <option value="">Selecciona Área</option>
-        <option value="Sistemas">Sistemas</option>
-        <option value="Administración">Administración</option>
-        <option value="Recursos Humanos">Recursos Humanos</option>
-        <option value="Finanzas">Finanzas</option>
-        <option value="Operaciones">Operaciones</option>
-    </select>
+    <div class="card">
+        <label>Estado</label>
+        <select id="estado">
+            <option value="">Selecciona Estado</option>
+            <option value="Activo">Activo</option>
+            <option value="En reparación">En reparación</option>
+            <option value="Baja">Baja</option>
+        </select>
+    </div>
+
+    <div class="card">
+        <label>Área</label>
+        <select id="area">
+            <option value="">Selecciona Área</option>
+            <option value="Sistemas">Sistemas</option>
+            <option value="Administración">Administración</option>
+            <option value="Recursos Humanos">Recursos Humanos</option>
+            <option value="Finanzas">Finanzas</option>
+            <option value="Operaciones">Operaciones</option>
+        </select>
+    </div>
+
+</div>
 
     <div class="buttons">
         <button id="btnGuardar">Guardar</button>
