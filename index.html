@@ -1,34 +1,19 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Inventario TI</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<div class="container">
-    <h2>Inventario de Dispositivos</h2>
-
-    <input type="hidden" id="id">
-
-   <div class="form-grid">
+<div class="form-grid">
 
     <div class="card">
         <label>Nombre</label>
-        <input type="text" id="nombre" placeholder="Ej: Laptop HP">
+        <input type="text" id="nombre">
     </div>
 
     <div class="card">
         <label>Tipo</label>
         <select id="tipo">
             <option value="">Selecciona Tipo</option>
-            <option value="Laptop">Laptop</option>
-            <option value="PC">PC</option>
-            <option value="Impresora">Impresora</option>
-            <option value="Monitor">Monitor</option>
-            <option value="Celular">Celular</option>
+            <option>Laptop</option>
+            <option>PC</option>
+            <option>Impresora</option>
+            <option>Monitor</option>
+            <option>Celular</option>
         </select>
     </div>
 
@@ -36,9 +21,9 @@
         <label>Estado</label>
         <select id="estado">
             <option value="">Selecciona Estado</option>
-            <option value="Activo">Activo</option>
-            <option value="En reparación">En reparación</option>
-            <option value="Baja">Baja</option>
+            <option>Activo</option>
+            <option>En reparación</option>
+            <option>Baja</option>
         </select>
     </div>
 
@@ -46,58 +31,12 @@
         <label>Área</label>
         <select id="area">
             <option value="">Selecciona Área</option>
-            <option value="Sistemas">Sistemas</option>
-            <option value="Administración">Administración</option>
-            <option value="Recursos Humanos">Recursos Humanos</option>
-            <option value="Finanzas">Finanzas</option>
-            <option value="Operaciones">Operaciones</option>
+            <option>Sistemas</option>
+            <option>Administración</option>
+            <option>Recursos Humanos</option>
+            <option>Finanzas</option>
+            <option>Operaciones</option>
         </select>
     </div>
 
 </div>
-
-    <div class="buttons">
-        <button id="btnGuardar">Guardar</button>
-        <button id="btnActualizar">Actualizar</button>
-    </div>
-
-    <h3>Lista de dispositivos</h3>
-
-    <input type="text" id="buscador" placeholder="🔍 Buscar...">
-
-    <!-- Tabla responsive -->
-    <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Tipo</th>
-                    <th>Estado</th>
-                    <th>Área</th>
-                    <th>Fecha</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody id="tabla">
-            </tbody>
-        </table>
-    </div>
-
-</div>
-
-<script src="script.js"></script>
-
-<!-- 🔥 Eventos compatibles con celular -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("btnGuardar").addEventListener("click", create);
-    document.getElementById("btnActualizar").addEventListener("click", update);
-
-    // Buscador en tiempo real
-    document.getElementById("buscador").addEventListener("input", filtrar);
-});
-</script>
-
-</body>
-</html>
