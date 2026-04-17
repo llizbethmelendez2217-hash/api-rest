@@ -1,0 +1,261 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    margin: 0;
+}
+
+.container {
+    background: #ffffff;
+    padding: 25px;
+    width: 90%;
+    max-width: 900px;
+    margin: 40px auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+input {
+    width: 95%;
+    padding: 10px;
+    margin: 6px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+#buscador {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 15px;
+    margin: 8px 5px;
+    border: none;
+    background: #667eea;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #5a67d8;
+    transform: scale(1.05);
+}
+
+table {
+    width: 100%;
+    margin-top: 15px;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+th {
+    background: #667eea;
+    color: white;
+    padding: 12px;
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background: #f4f6fb;
+}
+
+tr:hover {
+    background: #e2e8f0;
+}
+
+button.small {
+    padding: 6px 10px;
+    font-size: 12px;
+}
+
+button.small:nth-child(1) {
+    background: #38b2ac;
+}
+
+button.small:nth-child(2) {
+    background: #e53e3e;
+}
+
+tr {
+    transition: all 0.2s ease;
+}
+
+/* Inputs y selects iguales */
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    background: white;
+    box-sizing: border-box;
+}
+
+/* Quitar estilo feo del select */
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+}
+
+/* Flechita personalizada */
+.select-container {
+    position: relative;
+}
+
+.select-container::after {
+    content: "▼";
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #555;
+    font-size: 12px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    
+    .container {
+        width: 95%;
+        padding: 15px;
+        margin: 20px auto;
+    }
+
+    h2 {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    input, select {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    button {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: column;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    th, td {
+        padding: 6px;
+    }
+
+/* Contenedor de tabla */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 10px;
+}
+
+/* Tabla */
+table {
+    width: 100%;
+    min-width: 700px; /* 👈 evita que se aplaste demasiado */
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Celdas */
+th, td {
+    padding: 10px;
+    text-align: center;
+    white-space: nowrap; /* 👈 evita que el texto rompa la tabla */
+}
+
+/* Encabezado */
+th {
+    background: #667eea;
+    color: white;
+}
+
+/* Filas */
+tr:nth-child(even) {
+    background: #f4f6fb;
+}
+
+tr:hover {
+    background: #e2e8f0;
+}
+
+    .container {
+    width: 90%;
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box; /* 👈 IMPORTANTÍSIMO */
+}
+
+    @media (max-width: 768px) {
+
+    table {
+        min-width: 600px; /* 👈 permite scroll en vez de romperse */
+    }
+
+    th, td {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    }
+
+
+.table-container {
+    overflow-x: auto;
+    border-radius: 10px;
+}
+
+button {
+    position: relative;
+    z-index: 10;
+}
+
+.table-container {
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+
+    td:last-child {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    button.small {
+        width: 100%;
+        font-size: 12px;
+    }
+
+}
+
+button.small:nth-child(2) {
+    background: #e53e3e;
+    color: white;
+}
