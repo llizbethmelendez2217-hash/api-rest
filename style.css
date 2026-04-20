@@ -1,108 +1,58 @@
-const API = "http://127.0.0.1:5000/devices";
-
-document.addEventListener("DOMContentLoaded", () => {
-    loadData();
-    document.getElementById("btnGuardar").addEventListener("click", create);
-    document.getElementById("btnActualizar").addEventListener("click", update);
-});
-
-async function loadData() {
-    let res = await fetch(API);
-    let data = await res.json();
-    render(data);
+body {
+    font-family: Arial;
+    background: #ffe6f0;
 }
 
-function render(devices) {
-    let tabla = document.getElementById("tabla");
-    tabla.innerHTML = "";
-
-    devices.forEach(d => {
-        let fila = document.createElement("tr");
-
-        fila.innerHTML = `
-            <td>${d.id}</td>
-            <td><img src="${d.imagen}" width="50"></td>
-            <td>${d.nombre}</td>
-            <td>${d.marca}</td>
-            <td>${d.tipo}</td>
-            <td>${d.estado}</td>
-            <td>${d.area}</td>
-            <td>${d.fecha_registro}</td>
-            <td>
-                <button onclick="edit(${d.id})">Editar</button>
-                <button onclick="remove(${d.id})">Eliminar</button>
-            </td>
-        `;
-
-        tabla.appendChild(fila);
-    });
+.container {
+    background: white;
+    padding: 20px;
+    width: 90%;
+    margin: auto;
+    border-radius: 15px;
 }
 
-function getBase64(file) {
-    return new Promise((resolve, reject) => {
-        let reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = error => reject(error);
-    });
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
 }
 
-async function getData() {
-    let file = document.getElementById("imagen").files[0];
-    let img = "";
-
-    if (file) {
-        img = await getBase64(file);
-    }
-
-    return {
-        nombre: document.getElementById("nombre").value,
-        marca: document.getElementById("marca").value,
-        tipo: document.getElementById("tipo").value,
-        estado: document.getElementById("estado").value,
-        area: document.getElementById("area").value,
-        imagen: img
-    };
+.card {
+    background: #fff0f5;
+    padding: 10px;
+    border-radius: 10px;
 }
 
-async function create() {
-    let data = await getData();
-
-    await fetch(API, {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(data)
-    });
-
-    loadData();
+input, select {
+    width: 100%;
+    padding: 8px;
 }
 
-async function edit(id) {
-    let res = await fetch(`${API}/${id}`);
-    let d = await res.json();
-
-    document.getElementById("id").value = d.id;
-    document.getElementById("nombre").value = d.nombre;
-    document.getElementById("marca").value = d.marca;
-    document.getElementById("tipo").value = d.tipo;
-    document.getElementById("estado").value = d.estado;
-    document.getElementById("area").value = d.area;
+button {
+    margin-top: 10px;
+    padding: 10px;
+    background: #ff66b2;
+    color: white;
+    border: none;
+    border-radius: 8px;
 }
 
-async function update() {
-    let id = document.getElementById("id").value;
-    let data = await getData();
-
-    await fetch(`${API}/${id}`, {
-        method: "PUT",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(data)
-    });
-
-    loadData();
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
 }
 
-async function remove(id) {
-    await fetch(`${API}/${id}`, {method: "DELETE"});
-    loadData();
+th {
+    background: #ff66b2;
+    color: white;
+}
+
+td, th {
+    padding: 8px;
+    text-align: center;
+}
+
+img {
+    border-radius: 5px;
 }
