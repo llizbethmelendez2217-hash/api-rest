@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loadData();
 });
 
-// 🔹 Cargar datos
+// 🔹 Cargar
 function loadData() {
     let data = localStorage.getItem("devices");
     devices = data ? JSON.parse(data) : [];
@@ -16,7 +16,7 @@ function saveData() {
     localStorage.setItem("devices", JSON.stringify(devices));
 }
 
-// 🔹 Mostrar tabla
+// 🔹 Render
 function render() {
     let tabla = document.getElementById("tabla");
     tabla.innerHTML = "";
@@ -26,9 +26,9 @@ function render() {
 
         fila.innerHTML = `
             <td>${d.id}</td>
-            <td><img src="${d.imagen}" width="50"></td>
+            <td>${d.imagen ? `<img src="${d.imagen}">` : ""}</td>
             <td>${d.nombre}</td>
-            <td>${d.marca}</td>
+            <td>${d.marca || ""}</td>
             <td>${d.tipo}</td>
             <td>${d.estado}</td>
             <td>${d.area}</td>
@@ -43,9 +43,9 @@ function render() {
     });
 }
 
-// 🔹 Convertir imagen
+// 🔹 Imagen a base64
 function getBase64(file) {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
         let reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => resolve(reader.result);
