@@ -1,31 +1,18 @@
-let devices = [];
+const API = "http://127.0.0.1:5000/devices";
 
-// 🔥 Cargar al iniciar
 document.addEventListener("DOMContentLoaded", () => {
     loadData();
-
     document.getElementById("btnGuardar").addEventListener("click", create);
     document.getElementById("btnActualizar").addEventListener("click", update);
-    document.getElementById("buscador").addEventListener("input", filtrar);
 });
 
-
-// 🔹 Cargar datos del navegador
-function loadData() {
-    let data = localStorage.getItem("devices");
-    devices = data ? JSON.parse(data) : [];
-    render();
+async function loadData() {
+    let res = await fetch(API);
+    let data = await res.json();
+    render(data);
 }
 
-
-// 🔹 Guardar en navegador
-function saveData() {
-    localStorage.setItem("devices", JSON.stringify(devices));
-}
-
-
-// 🔹 Mostrar tabla
-function render() {
+function render(devices) {
     let tabla = document.getElementById("tabla");
     tabla.innerHTML = "";
 
@@ -34,111 +21,88 @@ function render() {
 
         fila.innerHTML = `
             <td>${d.id}</td>
+            <td><img src="${d.imagen}" width="50"></td>
             <td>${d.nombre}</td>
+            <td>${d.marca}</td>
             <td>${d.tipo}</td>
             <td>${d.estado}</td>
             <td>${d.area}</td>
-            <td>${d.fecha}</td>
+            <td>${d.fecha_registro}</td>
             <td>
-                <button class="small btnEditar">Editar</button>
-                <button class="small btnEliminar">Eliminar</button>
+                <button onclick="edit(${d.id})">Editar</button>
+                <button onclick="remove(${d.id})">Eliminar</button>
             </td>
         `;
-
-        fila.querySelector(".btnEditar").addEventListener("click", () => edit(d));
-        fila.querySelector(".btnEliminar").addEventListener("click", () => remove(d.id));
 
         tabla.appendChild(fila);
     });
 }
 
-
-// 🔹 Crear
-function create() {
-    let data = getData();
-
-    if (!data.nombre) {
-        alert("Ponle nombre bro 😅");
-        return;
-    }
-
-    let nuevo = {
-        id: Date.now(),
-        ...data,
-        fecha: new Date().toLocaleString()
-    };
-
-    devices.push(nuevo);
-    saveData();
-    render();
-    clear();
+function getBase64(file) {
+    return new Promise((resolve, reject) => {
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
 }
 
+async function getData() {
+    let file = document.getElementById("imagen").files[0];
+    let img = "";
 
-// 🔹 Editar
-function edit(d) {
+    if (file) {
+        img = await getBase64(file);
+    }
+
+    return {
+        nombre: document.getElementById("nombre").value,
+        marca: document.getElementById("marca").value,
+        tipo: document.getElementById("tipo").value,
+        estado: document.getElementById("estado").value,
+        area: document.getElementById("area").value,
+        imagen: img
+    };
+}
+
+async function create() {
+    let data = await getData();
+
+    await fetch(API, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(data)
+    });
+
+    loadData();
+}
+
+async function edit(id) {
+    let res = await fetch(`${API}/${id}`);
+    let d = await res.json();
+
     document.getElementById("id").value = d.id;
     document.getElementById("nombre").value = d.nombre;
+    document.getElementById("marca").value = d.marca;
     document.getElementById("tipo").value = d.tipo;
     document.getElementById("estado").value = d.estado;
     document.getElementById("area").value = d.area;
 }
 
-
-// 🔹 Actualizar
-function update() {
+async function update() {
     let id = document.getElementById("id").value;
+    let data = await getData();
 
-    if (!id) return;
-
-    let data = getData();
-
-    devices = devices.map(d => 
-        d.id == id ? { ...d, ...data } : d
-    );
-
-    saveData();
-    render();
-    clear();
-}
-
-
-// 🔹 Eliminar
-function remove(id) {
-    devices = devices.filter(d => d.id !== id);
-    saveData();
-    render();
-}
-
-
-// 🔹 Obtener datos
-function getData() {
-    return {
-        nombre: document.getElementById("nombre").value,
-        tipo: document.getElementById("tipo").value,
-        estado: document.getElementById("estado").value,
-        area: document.getElementById("area").value
-    };
-}
-
-
-// 🔹 Limpiar
-function clear() {
-    document.getElementById("id").value = "";
-    document.getElementById("nombre").value = "";
-    document.getElementById("tipo").value = "";
-    document.getElementById("estado").value = "";
-    document.getElementById("area").value = "";
-}
-
-
-// 🔹 Filtrar
-function filtrar() {
-    let input = document.getElementById("buscador").value.toLowerCase();
-    let filas = document.querySelectorAll("#tabla tr");
-
-    filas.forEach(fila => {
-        let texto = fila.textContent.toLowerCase();
-        fila.style.display = texto.includes(input) ? "" : "none";
+    await fetch(`${API}/${id}`, {
+        method: "PUT",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(data)
     });
+
+    loadData();
+}
+
+async function remove(id) {
+    await fetch(`${API}/${id}`, {method: "DELETE"});
+    loadData();
 }
