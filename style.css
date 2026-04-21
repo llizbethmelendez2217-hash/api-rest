@@ -1,16 +1,22 @@
 body {
     font-family: 'Segoe UI', sans-serif;
-    background: #ffe6f0;
+    background: #1a0f14; /* fondo oscuro */
     margin: 0;
+    color: #f5d6e0;
 }
 
 .container {
-    background: #ffffff;
+    background: #000000;
     padding: 30px;
     width: 90%;
     max-width: 900px;
     margin: 40px auto;
     border-radius: 20px;
+    box-shadow: 0 0 20px rgba(255, 102, 178, 0.2);
+}
+
+h2 {
+    color: #f5d6e0;
 }
 
 .form-grid {
@@ -20,7 +26,7 @@ body {
 }
 
 .card {
-    background: #fff0f5;
+    background: #2a1a22;
     padding: 15px;
     border-radius: 15px;
 }
@@ -29,20 +35,27 @@ input, select {
     width: 100%;
     padding: 10px;
     border-radius: 10px;
-    border: 1px solid #ffc0cb;
+    border: 1px solid #ff66b2;
+    background: #1a0f14;
+    color: #ffffff;
+}
+
+input::placeholder {
+    color: #aaa;
 }
 
 button {
-    padding: 10px;
+    padding: 10px 15px;
     border: none;
     border-radius: 10px;
-    background: #ff66b2;
+    background: #8a2d5d;
     color: white;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 button:hover {
-    background: #ff3385;
+    background: #a83b74;
 }
 
 .table-container {
@@ -56,7 +69,7 @@ table {
 }
 
 th {
-    background: #ff66b2;
+    background: #8a2d5d;
     color: white;
     padding: 10px;
 }
@@ -64,6 +77,7 @@ th {
 td {
     padding: 10px;
     text-align: center;
+    color: #f5d6e0;
 }
 
 img {
